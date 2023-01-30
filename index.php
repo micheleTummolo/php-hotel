@@ -46,18 +46,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Php Hotel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Php Hotels</title>
 </head>
 <body>
-    <div>
-        <?php
-        foreach($hotels as $key => $item){
-            echo "<br>";
-            echo $item." ".$key."<br>";
-            foreach($item as $id => $hotel)
-                echo $id." => ".$hotel."<br>";
-        }
-        ?>
+    <div class="px-5 h-100 d-flex align-items-center justify-content-center bg-dark">
+        <table class="table table-dark table-striped">
+            <thead>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Parking</th>
+                <th>Vote</th>
+                <th>Distance to center</th>
+            </thead>
+            <tbody class="table-group-divider">
+                <?php foreach($hotels as $key => $item){?>
+                    <tr>
+                        <?php foreach($item as $id => $hotel){ ?>
+                            <td>
+                                <?php 
+                                    if($id == "parking"){
+                                        if($hotel){
+                                            echo "Yes";
+                                        }
+                                        else echo "No";
+                                    }
+
+                                    else if($id == "vote")
+                                        echo $hotel."/5";
+
+                                    else if($id == "distance_to_center")
+                                        echo $hotel." km";
+
+                                    else echo $hotel; 
+                                ?>
+                            </td>
+                        <?php } ?>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
